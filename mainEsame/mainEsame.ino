@@ -26,7 +26,7 @@ void setup() {
     setUpSensor();    
     Serial.begin (9600);
     Serial.println("Avvio KY-033");
-    //motore.setSpeed(30);
+    motore.setSpeed(100);
 
 }
  
@@ -39,7 +39,7 @@ void loop(){
   updateSensore(sensore1,sensore2, sensore3, sensore4,sensore5); 
 
   updateMonitor();
-  //motore.step(800);
+  motore.step(10);
   Serial.println(sensore1);
 
 

@@ -6,7 +6,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   Serial.println("Hello World!");
-  motore.setSpeed(30);
+  motore.setSpeed(100);
   motore.step(100);
   delay(500);
   motore.step(-100);
