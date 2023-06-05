@@ -39,7 +39,7 @@ void loop(){
   updateSensore(sensore1,sensore2, sensore3, sensore4,sensore5); 
 
   updateMonitor();
-  motore.step(10);
+  motore.step(20 );
   Serial.println(sensore1);
 
 
