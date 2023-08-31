@@ -1,9 +1,7 @@
 #include <LiquidCrystal_I2C.h>
-#include <Stepper.h>
 
 
 LiquidCrystal_I2C lcd(0x27,16,2);
-Stepper motore(200,4,6,5,7);
 
 int g1_pin_const=13;
 int g2_pin_const=9;
@@ -21,12 +19,13 @@ int check2=0;
 int check3=0;
 int check4=0;
 int check5=0;
+
 void setup() {
     setUpMonitor();
     setUpSensor();    
     Serial.begin (9600);
     Serial.println("Avvio KY-033");
-    motore.setSpeed(100);
+
 
 }
  
@@ -36,15 +35,17 @@ void loop(){
   int sensore3 = digitalRead(g3_pin_const);
   int sensore4 = digitalRead(g4_pin_const);
   int sensore5 = digitalRead(g5_pin_const);
+
   updateSensore(sensore1,sensore2, sensore3, sensore4,sensore5); 
 
   updateMonitor();
-  motore.step(20 );
   Serial.println(sensore1);
 
 
 
 }
+
+
 void setUpMonitor(){
    if (!i2CAddrTest(0x27)) {
       lcd = LiquidCrystal_I2C(0x3F, 16, 2);
@@ -64,7 +65,7 @@ void setUpSensor(){
 
 void updateMonitor(){
     lcd.setCursor(0,0); // Move the cursor to row 1, column 0
-    lcd.print("g1:"); // The count is displayed every second
+    lcd.print("f1:"); // The count is displayed every second
     lcd.print(g1);
     lcd.setCursor(5,0); // Move the cursor to row 1, column 0
     lcd.print("g2:"); // The count is displayed every second
