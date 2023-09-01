@@ -1,25 +1,25 @@
-// C++ code
-//
-#include <Adafruit_LiquidCrystal.h>
 
-int seconds = 0;
+int g2_pin_const=11;
 
-Adafruit_LiquidCrystal lcd_1(0);
 
-void setup()
-{
-  lcd_1.begin(16, 2);
 
-  lcd_1.print("hello world");
+void setup() {
+    setUpSensor();    
+    Serial.begin (9600);
+    Serial.println("Avvio KY-033");
+
+
+}
+ 
+void loop(){
+  int g=digitalRead(g2_pin_const);
+  if(g==0){
+    Serial.println("c");
+   
+  }
 }
 
-void loop()
-{
-  lcd_1.setCursor(0, 1);
-  lcd_1.print(seconds);
-  lcd_1.setBacklight(1);
-  delay(500); // Wait for 500 millisecond(s)
-  lcd_1.setBacklight(0);
-  delay(500); // Wait for 500 millisecond(s)
-  seconds += 1;
+
+void setUpSensor(){
+    pinMode (g2_pin_const, INPUT);
 }
