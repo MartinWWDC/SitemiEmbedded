@@ -3,22 +3,25 @@
 
 LiquidCrystal_I2C lcd(0x27,16,2);
 
-int g1_pin_const=13;
-int g2_pin_const=9;
-int g3_pin_const=10;
+int g1_pin_const=9;
+int g2_pin_const=10;
+int g3_pin_const=11;
 int g4_pin_const=12;
-int g5_pin_const=11;
+int g5_pin_const=13;
 
 int g1=0;
 int g2=0;
 int g3=0;
 int g4=0;
 int g5=0;
-int check1=0;
-int check2=0;
-int check3=0;
-int check4=0;
-int check5=0;
+
+
+int g1_old=5;
+int g2_old=5;
+int g3_old=5;
+int g4_old=5;
+int g5_old=5;
+
 
 void setup() {
     setUpMonitor();
@@ -36,10 +39,13 @@ void loop(){
   int sensore4 = digitalRead(g4_pin_const);
   int sensore5 = digitalRead(g5_pin_const);
 
-  updateSensore(sensore1,sensore2, sensore3, sensore4,sensore5); 
+  //updateSensore(sensore1,sensore2, sensore3, sensore4,sensore5); 
 
-  updateMonitor();
-  Serial.println(sensore1);
+  //updateMonitor();
+  if(sensore4==0){
+    Serial.println("c");
+  }
+  //Serial.println(sensore4);
 
 
 
@@ -82,26 +88,28 @@ void updateMonitor(){
 
 }
 void updateSensore(int sensore1,int sensore2,int sensore3,int sensore4,int sensore5){
-    if(sensore1==0 && check1!=sensore1){
+  if(sensore1<g1_old){
     g1++;
   }
-  if(sensore2==0&& check2!=sensore2){
+  if(sensore2<g2_old){
     g2++;
   }
-  if(sensore3==0 && check3!=sensore3){
+  if(sensore3<g3_old){
     g3++;
   }  
-  if(sensore4==0 && check4!=sensore4){
+  if(sensore4<g4_old){
     g4++;
   }
-  if(sensore5==0 && check5!=sensore5){
+  if(sensore5<g5_old){
     g5++;
   }
-  check1=sensore1;
-  check2=sensore2;
-  check3=sensore3;
-  check4=sensore4;
-  check5=sensore5;
+  g1_old=sensore1;
+  g2_old=sensore2;
+  g3_old=sensore3;
+  g4_old=sensore4;
+  g5_old=sensore5;
+  
+
 }
 
 bool i2CAddrTest(uint8_t addr) {
