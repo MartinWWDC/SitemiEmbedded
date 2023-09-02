@@ -28,8 +28,6 @@ void setup() {
     setUpMonitor();    
 
     setUpSensor();
-    Serial.begin (9600);
-    Serial.println("Avvio KY-033");
 
 
 }
@@ -42,32 +40,27 @@ void loop(){
   int g4=digitalRead(g5_pin_const);
   int g5=digitalRead(g6_pin_const);
   if(g1==0){
-    Serial.println("G1");
     c=true;
     g1_c++;
   } if(g2==0){
-    Serial.println("G2");
         c=true;
             g2_c++;
 
 
   } 
   if(g3==0){
-    Serial.println("G3");
         c=true;
             g3_c++;
 
 
   } 
   if(g4==0){
-    Serial.println("G4");
         c=true;
             g4_c++;
 
 
   } 
   if(g5==0){
-    Serial.println("G5");
         c=true;
             g5_c++;
 
