@@ -1,5 +1,5 @@
 
-int g2_pin_const=11;
+int g2_pin_const=9;
 
 
 
@@ -21,5 +21,5 @@ void loop(){
 
 
 void setUpSensor(){
-    pinMode (g2_pin_const, INPUT);
+    pinMode (g2_pin_const, INPUT_PULLUP);
 }

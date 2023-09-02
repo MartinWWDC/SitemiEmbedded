@@ -3,73 +3,120 @@
 LiquidCrystal_I2C lcd(0x27,16,2);
 
 
-int g1=0;
-int g2=0;
-int g3=0;
+int g2_pin_const=9;
+
+
+int g3_pin_const=10;
+
+
+int g4_pin_const=11;
+
+
+int g5_pin_const=12;
+
+
+int g6_pin_const=13;
+
+int g1_c=0;
+int g2_c=0;
+int g3_c=0;
+int g4_c=0;
+int g5_c=0;
+
+
 void setup() {
-    if (!i2CAddrTest(0x27)) {
-      lcd = LiquidCrystal_I2C(0x3F, 16, 2);
-    } 
-    pinMode (13, INPUT);
-    pinMode (12, INPUT);
-    pinMode (11, INPUT);
-    lcd.init(); // LCD driver initialization
-    lcd.backlight(); // Open the backlight
-    lcd.setCursor(0,0); // Move the cursor to row 0, column 0
+    setUpMonitor();    
+
+    setUpSensor();
     Serial.begin (9600);
     Serial.println("Avvio KY-033");
+
+
 }
  
 void loop(){
-int sensore = digitalRead(13);
-int sensore2 = digitalRead(12);
-int sensore3 = digitalRead(11);
-  if(sensore==0){
-    g++;
-    delay(1000);
-  }
-  if(sensore2==0){
-    g2++;
-    delay(1000);
-  }
-  if(sensore3==0){
-    g3++;
-    delay(1000);
-  }
-  if(sensore==0 ||sensore2==0 ||sensore3==0){
-    //printSeerial();
-
-  }
-  updateMonitor();
+  bool c=false;
+  int g1=digitalRead(g2_pin_const);
+  int g2=digitalRead(g3_pin_const);
+  int g3=digitalRead(g4_pin_const);
+  int g4=digitalRead(g5_pin_const);
+  int g5=digitalRead(g6_pin_const);
+  if(g1==0){
+    Serial.println("G1");
+    c=true;
+    g1_c++;
+  } if(g2==0){
+    Serial.println("G2");
+        c=true;
+            g2_c++;
 
 
+  } 
+  if(g3==0){
+    Serial.println("G3");
+        c=true;
+            g3_c++;
+
+
+  } 
+  if(g4==0){
+    Serial.println("G4");
+        c=true;
+            g4_c++;
+
+
+  } 
+  if(g5==0){
+    Serial.println("G5");
+        c=true;
+            g5_c++;
+
+
+  }
+  if(c){
+   updateMonitor();    
+  }
+}
+
+
+void setUpSensor(){
+    pinMode (g2_pin_const, INPUT_PULLUP);
+    pinMode (g3_pin_const, INPUT_PULLUP);
+    pinMode (g4_pin_const, INPUT_PULLUP);
+    pinMode (g5_pin_const, INPUT_PULLUP);
+    pinMode (g6_pin_const, INPUT_PULLUP);
 }
 void updateMonitor(){
-   lcd.setCursor(0,0); // Move the cursor to row 1, column 0
-    lcd.print("g:"); // The count is displayed every second
-    lcd.print(g);
+    lcd.setCursor(0,0); // Move the cursor to row 1, column 0
+    lcd.print("f1:"); // The count is displayed every second
+    lcd.print(g1_c);
+    lcd.setCursor(5,0); // Move the cursor to row 1, column 0
+    lcd.print("g2:"); // The count is displayed every second
+    lcd.print(g2_c);
+    lcd.setCursor(11,0); // Move the cursor to row 1, column 0
+    lcd.print("g3:"); // The count is displayed every second
+    lcd.print(g3_c);
+    lcd.setCursor(0,1); // Move the cursor to row 1, column 0
+    lcd.print("g4:"); // The count is displayed every second
+    lcd.print(g4_c); 
+    lcd.setCursor(5,1); // Move the cursor to row 1, column 0
+    lcd.print("g5:"); // The count is displayed every second
+    lcd.print(g5_c);
 
 }
 
-void printSerial(){
-   Serial.println("----");
-    Serial.print(sensore);
-    Serial.print("  ");
-
-    Serial.println(g);
+void setUpMonitor(){
+   if (!i2CAddrTest(0x27)) {
+      lcd = LiquidCrystal_I2C(0x3F, 16, 2);
+    } 
     
-    Serial.print(sensore2);
-    Serial.print("  ");
-
-    Serial.println(g2);
-    Serial.print(sensore3);
-    Serial.print("  ");
-
-    Serial.println(g3);
-
-    Serial.println("----");
-        delay(1000);
+   lcd.init(); // LCD driver initialization
+   lcd.backlight(); // Open the backlight
+   lcd.setCursor(0,0); // Move the cursor to row 0, column 0
+   updateMonitor();
 }
+
+
 bool i2CAddrTest(uint8_t addr) {
  Wire.begin();
  Wire.beginTransmission(addr);
