@@ -2,19 +2,20 @@
 
 LiquidCrystal_I2C lcd(0x27,16,2);
 
-int sensor_pins[]={9,10,11,12,13};
+int sensor_pins[]={8,9,10,11,12  };
 
 int g_old[]={1,1,1,1,1};
 
+float counter=0.0;
 
-
-int g_c[]={0,0,0,0,0};
+float value[]={0.10,0.20,1.00,0.50,2.00};
 
 int monitor_cord[sizeof(sensor_pins)][2]={{0,0},{5,0},{11,0},{0,1},{5,1}};
 
 
 unsigned long lastUpdateTime[sizeof(sensor_pins)];
 const unsigned long updateInterval = 1000; // 1 secondo
+const unsigned long errorInterval = 2000; // 1 secondo
 
 
 void setup() {
@@ -33,13 +34,12 @@ void loop() {
 
     for (int i = 0; i < sizeof(sensor_pins) / sizeof(sensor_pins[0]); i++) {
         int g_n = digitalRead(sensor_pins[i]);
-
+  
         if (g_n < g_old[i] && (currentTime - lastUpdateTime[i] >= updateInterval)) {
             c = true;
-            g_c[i]++;
+            counter+=value[i];
             lastUpdateTime[i] = currentTime; // Aggiorna il tempo dell'ultimo aggiornamento.
         }
-
         g_old[i] = g_n;
     }
 
@@ -58,13 +58,11 @@ void setUpSensor(){
 
 }
 void updateMonitor(){
-    //Serial.println(sizeof(sensor_pins));
-    for (int i = 0; i < sizeof(sensor_pins) / sizeof(sensor_pins[0]); i++) {
-        lcd.setCursor(monitor_cord[i][0], monitor_cord[i][1]);
-        lcd.print("g" + String(i) + ":");
-        lcd.print(g_c[i]);
-    }
-
+  
+        lcd.setCursor(0,0);
+        lcd.print("Contatore:");
+        lcd.print(counter);
+    
 }
 
 void setUpMonitor(){
