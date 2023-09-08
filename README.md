@@ -24,26 +24,26 @@ Lo scopo di questo progetto è realizzare una macchina in grado di contare e div
 
 Componente Stampato in 3d che andrà a contenerere le singole monete 
 
-![](C:\Users\Martino\Desktop\laboratori\Sistemi%20Embedded\documentazione\cilindri-2.png)
+<img src="./documentazione/cilindri-2.png" title="" alt="" data-align="center">
 
-![](C:\Users\Martino\Desktop\laboratori\Sistemi%20Embedded\documentazione\cilindri-3.png)
+<img src="./documentazione/cilindri-3.png" title="" alt="" data-align="center">
 
 ### Base
 
 base che permettera di far scorrore  una volta il clinata e di permettere una divisione dei coin
 
-![](C:\Users\Martino\Desktop\laboratori\Sistemi%20Embedded\documentazione\base-1.png)
+<img src="./documentazione/base-1.png" title="" alt="" data-align="center">
 
-![](C:\Users\Martino\Desktop\laboratori\Sistemi%20Embedded\documentazione\base-2.png)
+<img src="./documentazione/base-2.png" title="" alt="" data-align="center">
 
 # Immagini
 
 ## Foto Progetto
 
-![](https://i.ibb.co/Qk3KVvV/1.jpg)
-![](https://i.ibb.co/3MX5Bjb/2.jpg)
-![](https://i.ibb.co/MNpxrm4/3.jpg)
-![](https://i.ibb.co/jZvCGFk/4.jpg)
+<img src="./documentazione/1.jpg" title="" alt="" data-align="center">
+<img src="./documentazione/2.jpg" title="" alt="" data-align="center">
+<img src="./documentazione/3.jpg" title="" alt="" data-align="center">
+<img src="./documentazione/4.jpg" title="" alt="" data-align="center">
 
 ## Video progetto
 
