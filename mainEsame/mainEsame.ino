@@ -21,7 +21,7 @@ const unsigned long errorInterval = 2000; // 1 secondo
 void setup() {
     setUpMonitor();    
 
-    //setUpSensor();
+    setUpSensor();
      for (int i = 0; i < sizeof(sensor_pins) / sizeof(sensor_pins[0]); i++) {
         lastUpdateTime[i] = 0;
     }
