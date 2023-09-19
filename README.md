@@ -4,7 +4,7 @@ Nome Progetto: Conta Monete
 Autore: Martino Francesco Leone 
 Descrizione: il progetto consiste in un Contatore di monete in valuta euro.
 
-Lo scopo di questo progetto è realizzare una macchina in grado di contare e dividere le monete dell'utente suddivvidendole per tagli e restituire a schermo il valore complessivo delle monete inserite.
+Lo scopo di questo progetto è realizzare una macchina in grado di contare e dividere le monete dell'utente suddividendole per tagli e restituire a schermo il valore complessivo delle monete inserite.
 
 ## Lista Materiale:
 
@@ -22,15 +22,13 @@ Lo scopo di questo progetto è realizzare una macchina in grado di contare e div
 
 ### Colonne
 
-Componente Stampato in 3d che andrà a contenerere le singole monete 
+Componente Stampato in 3d che andrà a contenere le singole monete 
 
 <img src="./documentazione/cilindri-2.png" title="" alt="" data-align="center">
 
 <img src="./documentazione/cilindri-3.png" title="" alt="" data-align="center">
 
 ### Base
-
-base che permettera di far scorrore  una volta il clinata e di permettere una divisione dei coin
 
 <img src="./documentazione/base-1.png" title="" alt="" data-align="center">
 
@@ -51,9 +49,9 @@ base che permettera di far scorrore  una volta il clinata e di permettere una di
 
 # Difficoltà riscontrate
 
-* **Appesantimento del codice:** la difficoltà principlae è stata riscontrata nella scrittura del codice in quanto,essendo che la caduta delle monete dura solo pochi millisecondi, è stato necessario assicurarsi di scrivere un codice suffficentemente efficente da non appesantire il clock della scheda
-* **Monete sotto i 10 cent:** i sensori kr-033 hanno il problema di non essere molto precisi nel captare elementi di piccola dimensione, in particolare le monete da 1,2 e 5 cent dato il loro spessore risultano di difficile implementazione (in quanto si richierebbe molto spesso di incorrere nella macata rilevazione della moneta) per questo motivo per mancanza di precisione e mancanza di sensori  non verrà implementato 
-* **Caduta Monete:** a progetto terminato è stato riscontrato un imperfezione nel componente "base" il quale non fa cadere correttamente le monete come espresso nel video segnalazione([sistemi ebedded-problema base - YouTube](https://youtu.be/bRrj2EUDvSM) )
+* **Appesantimento del codice:** la difficoltà principale è stata riscontrata nella scrittura del codice in quanto, essendo che la caduta delle monete dura solo pochi millisecondi, è stato necessario assicurarsi di scrivere un codice sufficientemente efficiente da non appesantire il clock della scheda
+* **Monete sotto i 10 cent:** i sensori kr-033 hanno il problema di non essere molto precisi nel captare elementi di piccola dimensione, in particolare le monete da 1,2 e 5 cent dato il loro spessore risultano di difficile implementazione (in quanto si rischierebbe molto spesso di incorrere nella mancata rilevazione della moneta) per questo motivo per mancanza di precisione e mancanza di sensori  non verrà implementato 
+* **Caduta Monete:** a progetto terminato è stato riscontrato un imperfezione nel componente "base" il quale non fa cadere correttamente le monete come espresso nel video segnalazione([sistemi embedded-problema base - YouTube](https://youtu.be/bRrj2EUDvSM) )
 
 Link a repo: https://github.com/MartinWWDC/SitemiEmbedded
 Licenza scelta: GNU GENERAL PUBLIC LICENSE version 3 (GPLv3)
