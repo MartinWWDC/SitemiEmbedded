@@ -2,27 +2,25 @@
 
 LiquidCrystal_I2C lcd(0x27,16,2);
 
-int sensor_pins[]={8,9,10,11,12  };
+int sensor_pins[]={8,9,10,11,12};
 
-int g_old[]={1,1,1,1,1};
+int sens_old[]={1,1,1,1,1};
 
 float counter=0.0;
 
 float value[]={0.10,0.20,1.00,0.50,2.00};
 
-int monitor_cord[sizeof(sensor_pins)][2]={{0,0},{5,0},{11,0},{0,1},{5,1}};
-
+bool checkE=false;
 
 unsigned long lastUpdateTime[sizeof(sensor_pins)];
-const unsigned long updateInterval = 1000; // 1 secondo
-const unsigned long errorInterval = 2000; // 1 secondo
+const unsigned long UPDATEINTERVAL = 1000; 
+const unsigned long ERRORINTERVAL = 3000; 
 
 
 void setup() {
-    setUpMonitor();    
-
+    setUpMonitor();   
     setUpSensor();
-     for (int i = 0; i < sizeof(sensor_pins) / sizeof(sensor_pins[0]); i++) {
+    for (int i = 0; i < sizeof(sensor_pins) / sizeof(sensor_pins[0]); i++) {
         lastUpdateTime[i] = 0;
     }
     
@@ -31,20 +29,26 @@ void setup() {
 void loop() {
     bool c = false;
     unsigned long currentTime = millis();
-
+    if(!checkE){
     for (int i = 0; i < sizeof(sensor_pins) / sizeof(sensor_pins[0]); i++) {
         int g_n = digitalRead(sensor_pins[i]);
-  
-        if (g_n < g_old[i] && (currentTime - lastUpdateTime[i] >= updateInterval)) {
+        
+        
+        if (g_n < sens_old[i] && (currentTime - lastUpdateTime[i] >= UPDATEINTERVAL)) {
             c = true;
             counter+=value[i];
-            lastUpdateTime[i] = currentTime; // Aggiorna il tempo dell'ultimo aggiornamento.
+            lastUpdateTime[i] = currentTime;
         }
-        g_old[i] = g_n;
+        sens_old[i] = g_n;
+        if( g_n==0 &&(currentTime - lastUpdateTime[i] > ERRORINTERVAL)){
+            checkE=true;
+            errorPrint(i);
+        }
     }
 
     if (c) {
         updateMonitor();
+    }
     }
 }
 
@@ -70,9 +74,9 @@ void setUpMonitor(){
       lcd = LiquidCrystal_I2C(0x3F, 16, 2);
     } 
     
-   lcd.init(); // LCD driver initialization
-   lcd.backlight(); // Open the backlight
-   lcd.setCursor(0,0); // Move the cursor to row 0, column 0
+   lcd.init();
+   lcd.backlight();
+   lcd.setCursor(0,0);
    updateMonitor();
 }
 
@@ -89,15 +93,14 @@ bool i2CAddrTest(uint8_t addr) {
 
 
 void errorPrint(int g){
+  lcd.clear();
 
-
- lcd.setCursor(0,0); // Move the cursor to row 1, column 0
- lcd.print("Errore!"); // The count is displayed every second
-
-  lcd.setCursor(0,1); // Move the cursor to row 1, column 0
-  lcd.print("Colonna g");
-  lcd.print(g);
-  lcd.print(" PIENA"); // The count is displayed every second
+  lcd.setCursor(0,0); 
+  lcd.print("Colonna dei ");
+  lcd.print(value[g]);
+  lcd.setCursor(0,1); 
+  lcd.print(" PIENA"); 
+  
 
 
 }
