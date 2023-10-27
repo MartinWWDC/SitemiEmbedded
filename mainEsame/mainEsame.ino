@@ -1,14 +1,30 @@
 #include <LiquidCrystal_I2C.h>
 
+// Inizializzazione del display LCD I2C con indirizzo 0x27 e dimensioni 16x2.
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
+// Array che contiene i pin dei sensori.
 int sensor_pins[] = {8, 9, 10, 11, 12};
+
+// Array che tiene traccia dello stato precedente dei sensori.
 int sens_old[] = {1, 1, 1, 1, 1};
+
+// Contatore per tenere traccia del valore totale delle monete rilevate.
 float counter = 0.0;
+
+// Valori delle monete corrispondenti ai sensori.
 float value[] = {0.10, 0.20, 1.00, 0.50, 2.00};
+
+// Flag per il controllo degli errori.
 bool checkE = false;
+
+// Array per memorizzare l'ultimo tempo di aggiornamento di ciascun sensore.
 unsigned long lastUpdateTime[sizeof(sensor_pins)];
+
+// Intervallo di aggiornamento dei sensori.
 const unsigned long UPDATEINTERVAL = 1000;
+
+// Intervallo di errore per il rilevamento dei sensori.
 const unsigned long ERRORINTERVAL = 3000;
 
 void setup() {
@@ -43,19 +59,21 @@ void loop() {
     }
   }
 }
-
+// Funzione di configurazione dei sensori.
 void setUpSensor() {
   for (int i = 0; i < sizeof(sensor_pins) / sizeof(sensor_pins[0]); i++) {
     pinMode(sensor_pins[i], INPUT_PULLUP);
   }
 }
 
+// Funzione di aggiornamento del monitor.
 void updateMonitor() {
   lcd.setCursor(0, 0);
   lcd.print("Contatore:");
   lcd.print(counter);
 }
 
+// Funzione di configurazione del monitor
 void setUpMonitor() {
   if (!i2CAddrTest(0x27)) {
     lcd = LiquidCrystal_I2C(0x3F, 16, 2);
@@ -67,6 +85,7 @@ void setUpMonitor() {
   updateMonitor();
 }
 
+// Funzione per il test dell'indirizzo I2C del display.
 bool i2CAddrTest(uint8_t addr) {
   Wire.begin();
   Wire.beginTransmission(addr);
@@ -76,6 +95,7 @@ bool i2CAddrTest(uint8_t addr) {
   return false;
 }
 
+// Funzione di gestione degli errori.
 void errorPrint(int g) {
   lcd.clear();
   lcd.setCursor(0, 0);
