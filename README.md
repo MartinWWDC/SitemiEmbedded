@@ -4,7 +4,7 @@ Nome Progetto: Conta Monete
 Autore: Martino Francesco Leone 
 Descrizione: il progetto consiste in un Contatore di monete in valuta euro.
 
-Lo scopo di questo progetto è realizzare una macchina in grado di contare e dividere le monete dell'utente suddividendole per tagli e restituire a schermo il valore complessivo delle monete inserite.
+Lo scopo di questo progetto è realizzare una macchina in grado di contare e dividere le monete dell'utente suddividendole per tagli e restituire a schermo il numero delle monete inserite divise per tipo.
 
 ## Lista Materiale:
 
@@ -49,9 +49,11 @@ Componente Stampato in 3d che andrà a contenere le singole monete
 
 # Difficoltà riscontrate
 
-* **Appesantimento del codice:** la difficoltà principale è stata riscontrata nella scrittura del codice in quanto, essendo che la caduta delle monete dura solo pochi millisecondi, è stato necessario assicurarsi di scrivere un codice sufficientemente efficiente da non appesantire il clock della scheda
-* **Monete sotto i 10 cent:** i sensori kr-033 hanno il problema di non essere molto precisi nel captare elementi di piccola dimensione, in particolare le monete da 1,2 e 5 cent dato il loro spessore risultano di difficile implementazione (in quanto si rischierebbe molto spesso di incorrere nella mancata rilevazione della moneta) per questo motivo per mancanza di precisione e mancanza di sensori  non verrà implementato 
-* **Caduta Monete:** a progetto terminato è stato riscontrato un imperfezione nel componente "base" il quale non fa cadere correttamente le monete come espresso nel video segnalazione([sistemi embedded-problema base - YouTube](https://youtu.be/bRrj2EUDvSM) )
+1. Appesantimento del codice: La principale sfida è stata scrivere un codice efficiente in quanto, la caduta delle monete dura solo pochi millisecondi. È stato necessario assicurarsi che il codice non appesantisse il clock della scheda.
+
+2. Monete sotto i 10 cent: I sensori kr-033 hanno difficoltà a rilevare elementi di piccole dimensioni, in particolare le monete da 1, 2 e 5 cent, a causa del loro spessore. Questo rende la loro implementazione problematica poiché ci sarebbe un rischio frequente di non rilevare correttamente le monete. Per questa ragione, a causa della mancanza di precisione e di sensori adatti, queste monete non verranno implementate.
+
+3. Caduta delle monete: Dopo aver completato il progetto, è emerso un problema con il componente "base", che non fa cadere le monete correttamente, come mostrato nel video di segnalazione ([sistemi embedded-problema base - YouTube](https://youtu.be/bRrj2EUDvSM) )
 
 Link a repo: https://github.com/MartinWWDC/SitemiEmbedded
 Licenza scelta: GNU GENERAL PUBLIC LICENSE version 3 (GPLv3)
