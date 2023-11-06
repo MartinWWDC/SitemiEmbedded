@@ -45,6 +45,12 @@ Componente Stampato in 3d che andrà a contenere le singole monete
 
 ### Problemi Rilevazione:
 
+Una volta completato l'assemblaggio procediamo a verificare l'affidabilità della macchina testando il tasso di errore. 
+
+Per questioni di tempo eseguiremo 10 test per singolo taglio di moneta e scoprire il tasso di errore.
+
+> NOTA: non vengono considerati gli errori strutturali del sistema (es. moneta cade nella colonna sbagliata)
+
 | Test N      | 0.1 | 0.2 | 0.5 | 1   | 2   |
 | ----------- | --- | --- | --- | --- | --- |
 | 1           | 1   | 1   | 1   | 1   | 1   |
@@ -59,7 +65,11 @@ Componente Stampato in 3d che andrà a contenere le singole monete
 | 10          | 1   | 1   | 0   | 0   | 1   |
 | Total Error | 2   | 2   | 1   | 4   | 1   |
 
+vediamo questi dati mostrati tramite un grafico 
+
 <img src="./documentazione/grafico.png" title="" alt="" data-align="center">
+
+notiamo che per qualche motivo il sensore delle monete da 1 euro  sia  quella più propensa al non rilevare la caduta.  Le cause devono ancora essere ancora trovate 
 
 ## Video progetto
 
@@ -77,23 +87,7 @@ Componente Stampato in 3d che andrà a contenere le singole monete
    su 10 lanci per monete seguito da un grafico che mostra il numero di errori per
    ogni moneta(aka; ogni sensore)
 
-### Problemi Rilevazione:
-
-| Test N      | 0.1 | 0.2 | 0.5 | 1   | 2   |
-| ----------- | --- | --- | --- | --- | --- |
-| 1           | 1   | 1   | 1   | 1   | 1   |
-| 2           | 1   | 1   | 1   | 0   | 1   |
-| 3           | 1   | 1   | 1   | 1   | 1   |
-| 4           | 0   | 1   | 1   | 1   | 1   |
-| 5           | 1   | 1   | 1   | 1   | 1   |
-| 6           | 0   | 1   | 1   | 0   | 1   |
-| 7           | 1   | 1   | 1   | 0   | 1   |
-| 8           | 1   | 0   | 1   | 1   | 1   |
-| 9           | 1   | 0   | 1   | 1   | 0   |
-| 10          | 1   | 1   | 0   | 0   | 1   |
-| Total Error | 2   | 2   | 1   | 4   | 1   |
-
-<img src="./documentazione/grafico.png" title="" alt="" data-align="center">
+---
 
 Link a repo: https://github.com/MartinWWDC/SitemiEmbedded
 Licenza scelta: GNU GENERAL PUBLIC LICENSE version 3 (GPLv3)
